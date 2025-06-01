@@ -4,7 +4,7 @@ After=docker.service
 [Service]
 WorkingDirectory=/opt/foon_detect
 ExecStart=docker-compose up --build
-ExecStop=docker-compose down
+ExecStop=docker-compose stop
 Restart=always
 RestartSec=10
 [Install]
