@@ -1,0 +1,24 @@
+secrets:
+  db_secret:
+    file: ./db_secret
+
+services:
+  foondb:
+    secrets: 
+      - db_secret
+    build: .
+    ports:
+      - "5432:5432"
+    networks:
+      - foonnet
+    volumes:
+      - foondb_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db_secret
+
+networks:
+  foonnet:
+    driver: bridge
+
+volumes:
+  foondb_data:

@@ -7,10 +7,11 @@ class NoDatabaseError(Exception):
 class GresEngine:
 
     def __init__(self):
-      
+        with open("db_secret", "r") as f:
+            DB_SECRET = f.read().strip()
         # Example connection string for local Postgres
         # Format: postgresql+psycopg2://user:password@localhost:5432/dbname
-        self.local_pg_url = "postgresql+psycopg2://postgres:Ripsej07@localhost:5432/postgres"
+        self.local_pg_url = f"postgresql+psycopg2://postgres:{DB_SECRET}@localhost:5432/postgres"
         self.engine = sqlalchemy.create_engine(self.local_pg_url)
         print("SQLAlchemy engine created with URL:", self.local_pg_url)
         self.connection = self.connect()

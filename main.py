@@ -1,3 +1,6 @@
+
+#!/home/josh/code/python/foon_detect/.venv/bin/python3
+
 from sql_engine import GresEngine
 from bt_engine import BTEngine
 import asyncio

@@ -1,0 +1,11 @@
+[Unit]
+Description=Foon Detect Service
+Requires=foon_db.service
+[Service]
+WorkingDirectory=/opt/foon_detect
+ExecStart=/opt/foon_detect/.venv/bin/python3 main.py
+Restart=always
+RestartSec=10
+StandardOutput=null
+[Install]
+WantedBy=multi-user.target
