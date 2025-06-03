@@ -13,11 +13,13 @@ print(f"Running on host: {HOSTNAME}")
 def main():
     engine = GresEngine()
     bt_engine = BTEngine()
-
+    heatbeat_iter = 0
     try:
         while True:
+            heatbeat_iter += 1
             # record heartbeat
-            engine.write_heartbeat(detector=HOSTNAME)
+            if heatbeat_iter % 10 == 0:
+                engine.write_heartbeat(detector=HOSTNAME)
             devices = asyncio.run(bt_engine.scan_devices())
             print("Bluetooth devices found:")
             for device in devices:
